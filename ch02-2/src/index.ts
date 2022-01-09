@@ -1,8 +1,14 @@
-import IPerson from "./person/IPerson"
-import Person from "./person/Person"
-import Chance from "chance"
-import * as R from 'ramda'
+import {IPerson, ICompany} from '../src/person/IPerson_ICompany'
+import {Person, Company} from "./person/Person_Company"
 
-const chance = new Chance()
-let persons: IPerson[] = R.range(0, 2).map((n: number) => new Person(chance.name(), chance.age()))
+let jack : Person = {name: 'Jack', age: 31},
+    jane : Person = {name: 'Jane', age: 22}
+
+let apple : Company = {name: 'Apple', age: 43},
+    ms : Company = {name: 'Microsoft', age: 44}
+
+let persons: Person[] = [jack, jane],
+    companys: Company[] = [apple, ms]
+
 console.log(persons)
+console.log(companys)
