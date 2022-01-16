@@ -38,10 +38,28 @@
 // let powSum = fold(map(numbers, pow), (result, value) => result + value, 0)
 // console.log(powSum)
 
-const multiply = (result, val) => result * val
-const sum = (result, val) => result + val
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-let tempResult =numbers.filter(val => val % 2 != 0).map(val => val * val).reduce(sum, 0)
-console.log(tempResult)
-let check = 1 + 9 + 25 + 49 + 81
-console.log(check)
+// const multiply = (result, val) => result * val
+// const sum = (result, val) => result + val
+// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// let tempResult =numbers.filter(val => val % 2 != 0).map(val => val * val).reduce(sum, 0)
+// console.log(tempResult)
+// let check = 1 + 9 + 25 + 49 + 81
+// console.log(check)
+
+import {readFile} from 'fs'
+
+const readFilePromise = (filename: string): Promise<string> =>
+    new Promise<string>((
+        resolve: (value: string) => void,
+        reject: (error: Error) => void
+    ) => {
+        readFile(filename, (err: Error, buffer: Buffer) => {
+            if(err) throw err
+            else{
+                const content = buffer.toString()
+                console.log(content)
+            }
+        })
+    })
+
+readFilePromise('./package.json')
