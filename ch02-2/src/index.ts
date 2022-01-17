@@ -46,20 +46,24 @@
 // let check = 1 + 9 + 25 + 49 + 81
 // console.log(check)
 
-import {readFile} from 'fs'
+import {readFilePromise} from '../src/readfile/readFilePromise'
 
-const readFilePromise = (filename: string): Promise<string> =>
-    new Promise<string>((
-        resolve: (value: string) => void,
-        reject: (error: Error) => void
-    ) => {
-        readFile(filename, (err: Error, buffer: Buffer) => {
-            if(err) throw err
-            else{
-                const content = buffer.toString()
-                console.log(content)
-            }
-        })
+const readFilesAll = async (filenames: string[]) => {
+    /* string[] 타입 배열을 Promise[] 타입 객체로 전환
+        -> Promise.all 을 통해 단일 Promise 객체로 만듦
+        -> 객체에 await 구문을 적용해 해소된 결과값 반환
+    */
+    return await Promise.all(
+        filenames.map(filename => readFilePromise(filename))
+    )
+}
+
+readFilesAll(['./package.json', './tsconfig.json'])
+    .then(([packageJson, tsconfigJson]: string[]) => {
+        /* readFilesAll 함수를 Promise 객체로 취급
+            -> then-catch 체인으로 연결
+         */
+        console.log('<package.json>: ', packageJson)
+        console.log('<tsconfig.json>: ', tsconfigJson)
     })
-
-readFilePromise('./package.json')
+    .catch(err => console.log('error:', err.message))
