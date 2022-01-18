@@ -68,10 +68,26 @@
 //     })
 //     .catch(err => console.log('error:', err.message))
 
-import {f, g, h} from '../src/compose/f-g-h'
-import {compose} from '../src/compose/compose'
+// import {f, g, h} from '../src/compose/f-g-h'
+// import {compose} from '../src/compose/compose'
 
-const composedFGH = compose(f, g, h)
+// const composedFGH = compose(f, g, h)
+// console.log(
+//     composedFGH('x')
+// )
+
+// pointless function squaerMap과 sumArray를 pipe로 조합해 피타고라스의 정리를 구현한 함수
+import {pipe} from '../src/compose/pipe'
+import {squareMap} from '../src/compose/squaredMap'
+import {sumArray} from '../src/compose/sumArray'
+
+const pitagoras = pipe(
+    squareMap, 
+    sumArray, 
+    Math.sqrt
+)
+
 console.log(
-    composedFGH('x')
+    // 피타고라스의 정리를 만족하는 나머지 한변의 길이
+    pitagoras([3, 4])
 )
