@@ -77,17 +77,21 @@
 // )
 
 // pointless function squaerMap과 sumArray를 pipe로 조합해 피타고라스의 정리를 구현한 함수
-import {pipe} from '../src/compose/pipe'
-import {squareMap} from '../src/compose/squaredMap'
-import {sumArray} from '../src/compose/sumArray'
+// import {pipe} from '../src/compose/pipe'
+// import {squareMap} from '../src/compose/squaredMap'
+// import {sumArray} from '../src/compose/sumArray'
 
-const pitagoras = pipe(
-    squareMap, 
-    sumArray, 
-    Math.sqrt
-)
+// const pitagoras = pipe(
+//     squareMap, 
+//     sumArray, 
+//     Math.sqrt
+// )
 
-console.log(
-    // 피타고라스의 정리를 만족하는 나머지 한변의 길이
-    pitagoras([3, 4])
-)
+// console.log(
+//     // 피타고라스의 정리를 만족하는 나머지 한변의 길이
+//     pitagoras([3, 4])
+// )
+import * as R from 'ramda'
+
+const numbers: number[] = R.range(1, 9 + 1)
+R.tap(n => console.log(n))(numbers)
