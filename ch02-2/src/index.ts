@@ -91,9 +91,20 @@
 //     // 피타고라스의 정리를 만족하는 나머지 한변의 길이
 //     pitagoras([3, 4])
 // )
-import * as R from 'ramda'
+// import * as R from 'ramda'
 
-R.pipe(
-    R.filter(R.lte(3)),
-    R.tap(n => console.log(n))
-)(R.range(1, 9+1))
+// R.pipe(
+//     R.filter(R.lte(3)),
+//     R.tap(n => console.log(n))
+// )(R.range(1, 9+1))
+
+import { ICoordinates } from "./chance/coordinates/ICoordinates";
+import { makeICoordinates } from "./chance/coordinates/makeICoordinates";
+import { makeRandomICoordintes } from "./chance/coordinates/makeRandomICoordinates";
+import { ILocation } from "./chance/location/ILocation";
+import { makeRandomILocation } from "./chance/location/makeRandomILocation";
+import { IPerson } from "./chance/person/IPerson";
+import { makeRandomIPerson } from "./chance/person/makeRandomIPerson";
+
+const person: IPerson = makeRandomIPerson()
+console.log(person)
