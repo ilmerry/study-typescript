@@ -98,13 +98,48 @@
 //     R.tap(n => console.log(n))
 // )(R.range(1, 9+1))
 
-import { ICoordinates } from "./chance/coordinates/ICoordinates";
-import { makeICoordinates } from "./chance/coordinates/makeICoordinates";
-import { makeRandomICoordintes } from "./chance/coordinates/makeRandomICoordinates";
-import { ILocation } from "./chance/location/ILocation";
-import { makeRandomILocation } from "./chance/location/makeRandomILocation";
-import { IPerson } from "./chance/person/IPerson";
-import { makeRandomIPerson } from "./chance/person/makeRandomIPerson";
+// import { ICoordinates } from "./chance/coordinates/ICoordinates";
+// import { makeICoordinates } from "./chance/coordinates/makeICoordinates";
+// import { makeRandomICoordintes } from "./chance/coordinates/makeRandomICoordinates";
+// import { ILocation } from "./chance/location/ILocation";
+// import { makeRandomILocation } from "./chance/location/makeRandomILocation";
+// import { IPerson } from "./chance/person/IPerson";
+// import { makeRandomIPerson } from "./chance/person/makeRandomIPerson";
 
-const person: IPerson = makeRandomIPerson()
-console.log(person)
+// const person: IPerson = makeRandomIPerson()
+// console.log(person)
+
+function increase(number) {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const result = number + 10;
+        if (result > 50) {
+          const e = new Error('NumberToBig');
+          return reject(e);
+        }
+        resolve(result);
+      }, 1000);
+    });
+    return promise;
+}
+
+async function runTasks() {
+    try{
+        let result = await increase(0)
+        console.log(result)
+        result = await increase(result)
+        console.log(result)
+        result = await increase(result)
+        console.log(result)
+        result = await increase(result)
+        console.log(result)
+        result = await increase(result)
+        console.log(result)
+        result = await increase(result)
+        console.log(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+runTasks()
